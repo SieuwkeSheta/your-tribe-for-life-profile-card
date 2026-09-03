@@ -1,0 +1,18 @@
+<script>
+	import favicon from '$lib/assets/favicon.svg';
+	import '$lib/style.css'
+
+	let { children } = $props();
+</script>
+
+<svelte:head>
+	<link rel="icon" href={favicon} />
+</svelte:head>
+
+{@render children()}
+
+<!-- <footer>
+	<nav>
+		<a href="/">Home</a>
+	</nav>
+</footer> -->
