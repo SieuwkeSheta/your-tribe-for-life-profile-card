@@ -65,9 +65,9 @@
       <p>{person.bio}</p>
 
       <menu>
-        <li><button id="ambitions" class="is-clicked">Ambities</button></li>
-        <li><button id="work">Werkervaring</button></li>
-        <li><button id="hobbies">Hobbies</button></li>
+        <li><button id="ambitions" class="is-clicked" onclick={showAmbitions}>Ambitions</button></li>
+        <li><button id="work" onclick={showWork}>Work experience</button></li>
+        <li><button id="hobbies" onclick={showHobbies}>Hobbies</button></li>
       </menu>
 
       <!-- List of ambitions -->
@@ -82,11 +82,11 @@
       <ul class="work">
         <li>
           <img src="{camera}" alt="" width="50" height="50">
-          Fotograaf
+          Photographer
         </li>
         <li>
           <img src="{autismLogo}" alt="" width="50">
-          Ervarings-deskundige Autisme
+          Neurodiversity Specialist Autism
         </li>
       </ul>
 
@@ -94,15 +94,15 @@
       <ul class="hobbies">
         <li>
           <img src="{animalHeart}" alt="" width="50" height="50">
-          Dieren- liefhebber
+          Animal lover
         </li>
         <li>
           <img src="{controller}" alt="" width="50" height="50">
-          Gamen
+          Gaming
         </li>
         <li>
           <img src="{sewingNeedle}" alt="" width="50" height="50">
-          Handwerkjes
+          DIY crafts
         </li>
       </ul>
     </section>
