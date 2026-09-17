@@ -1,6 +1,7 @@
 <script>
 	import {flipCard} from '$lib/index.js'
 	import {showAmbitions, showWork, showHobbies} from '$lib/filter.js'
+	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte'
 	import animalHeart from '$lib/assets/animalheart.avif'
 	import autismLogo from '$lib/assets/autism.avif'
 	import camera from '$lib/assets/camera.avif'
@@ -15,6 +16,8 @@
 <svelte:head>
     <title>{person.name}</title>
 </svelte:head>
+
+<ThemeSwitcher />
 
 <main class="card">
   <!-- Inside of the card which flips -->
@@ -119,3 +122,247 @@
   Flip card
 </button>
 
+<!-- 
+<script>
+	import {switchTheme} from '$lib/index.js'
+
+	let { data } = $props()
+	let { person, age } = $derived(data)
+</script>
+
+<button class="theme-switcher" onclick={switchTheme}>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="light-theme-icon">
+		<title>Switch to light mode</title>
+		<path d="M338.5-338.5Q280-397 280-480t58.5-141.5Q397-680 480-680t141.5 58.5Q680-563 680-480t-58.5 141.5Q563-280 480-280t-141.5-58.5ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/>
+	</svg>
+	<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="dark-theme-icon">
+		<title>Switch to dark mode</title>
+		<path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/>
+	</svg>
+</button>
+
+<article>
+
+	<picture>
+		<source srcset="{person.avatar}" type="image/avif">
+        <source srcset="{person.avatar}" type="image/webp">
+        <img loading="lazy" src="{person.avatar}" width="200" height="200" alt="Mugshot of {person.name}">
+	</picture>
+
+	<hgroup>
+		<h1>{person.name}, {age}</h1>
+		<p>{person.residency}</p>
+	</hgroup>
+
+	<p class="i-am-text">I am a <span>2nd year Frontend student</span></p>
+
+	<ul>
+        <li> 
+          <a href="https://github.com/{person.github_handle}" target="_blank">
+            <svg width="40" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.36532 22.5456C9.36532 22.6614 9.23548 22.754 9.07177 22.754C8.88548 22.7714 8.75564 22.6787 8.75564 22.5456C8.75564 22.4298 8.88548 22.3371 9.04919 22.3371C9.21855 22.3198 9.36532 22.4124 9.36532 22.5456ZM7.60968 22.285C7.57016 22.4008 7.68306 22.534 7.85242 22.5687C7.99919 22.6266 8.16855 22.5687 8.20242 22.4529C8.23629 22.3371 8.12903 22.204 7.95968 22.1518C7.8129 22.1113 7.64919 22.1692 7.60968 22.285ZM10.1048 22.1866C9.94113 22.2271 9.82823 22.3371 9.84516 22.4703C9.8621 22.5861 10.0089 22.6614 10.1782 22.6208C10.3419 22.5803 10.4548 22.4703 10.4379 22.3545C10.421 22.2445 10.2685 22.1692 10.1048 22.1866ZM13.8194 0C5.98952 0 0 6.09668 0 14.1272C0 20.5481 3.94032 26.0426 9.56855 27.9764C10.2911 28.1096 10.5452 27.6522 10.5452 27.2758C10.5452 26.9169 10.5282 24.9368 10.5282 23.7209C10.5282 23.7209 6.57661 24.5894 5.74677 21.9955C5.74677 21.9955 5.10323 20.3107 4.17742 19.8764C4.17742 19.8764 2.88468 18.9674 4.26774 18.9848C4.26774 18.9848 5.67339 19.1006 6.44677 20.4786C7.68306 22.7135 9.75484 22.0708 10.5621 21.6887C10.6919 20.7623 11.0589 20.1196 11.4653 19.7375C8.30968 19.3785 5.12581 18.9096 5.12581 13.3397C5.12581 11.7475 5.55484 10.9485 6.45806 9.92954C6.31129 9.5532 5.83145 8.00153 6.60484 5.99825C7.78468 5.62191 10.5 7.5615 10.5 7.5615C11.629 7.23728 12.8427 7.06937 14.0452 7.06937C15.2476 7.06937 16.4613 7.23728 17.5903 7.5615C17.5903 7.5615 20.3056 5.61613 21.4855 5.99825C22.2589 8.00732 21.779 9.5532 21.6323 9.92954C22.5355 10.9543 23.0887 11.7533 23.0887 13.3397C23.0887 18.9269 19.7637 19.3727 16.6081 19.7375C17.1274 20.1949 17.5677 21.0634 17.5677 22.424C17.5677 24.3751 17.5508 26.7895 17.5508 27.2643C17.5508 27.6406 17.8105 28.098 18.5274 27.9648C24.1726 26.0426 28 20.5481 28 14.1272C28 6.09668 21.6492 0 13.8194 0ZM5.4871 19.9691C5.41371 20.027 5.43064 20.1602 5.52661 20.2702C5.61694 20.3628 5.74677 20.4033 5.82016 20.3281C5.89355 20.2702 5.87661 20.137 5.78064 20.027C5.69032 19.9343 5.56048 19.8938 5.4871 19.9691ZM4.87742 19.5001C4.8379 19.5754 4.89435 19.668 5.00726 19.7259C5.09758 19.7838 5.21048 19.7664 5.25 19.6854C5.28952 19.6101 5.23306 19.5175 5.12016 19.4596C5.00726 19.4248 4.91694 19.4422 4.87742 19.5001ZM6.70645 21.5613C6.61613 21.6366 6.65 21.8103 6.77984 21.9203C6.90968 22.0534 7.07339 22.0708 7.14677 21.9782C7.22016 21.9029 7.18629 21.7292 7.07339 21.6192C6.94919 21.486 6.77984 21.4687 6.70645 21.5613ZM6.0629 20.7102C5.97258 20.7681 5.97258 20.9186 6.0629 21.0518C6.15323 21.1849 6.30564 21.2428 6.37903 21.1849C6.46935 21.1097 6.46935 20.9591 6.37903 20.826C6.3 20.6928 6.15323 20.6349 6.0629 20.7102Z" fill=""/>
+            </svg>
+            Github
+          </a>
+        </li>
+
+        <li>
+            <a href="/">
+            <svg width="40" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <path d="M26 0H1.99375C0.89375 0 0 0.90625 0 2.01875V25.9813C0 27.0938 0.89375 28 1.99375 28H26C27.1 28 28 27.0938 28 25.9813V2.01875C28 0.90625 27.1 0 26 0ZM8.4625 24H4.3125V10.6375H8.46875V24H8.4625ZM6.3875 8.8125C5.05625 8.8125 3.98125 7.73125 3.98125 6.40625C3.98125 5.08125 5.05625 4 6.3875 4C7.7125 4 8.79375 5.08125 8.79375 6.40625C8.79375 7.7375 7.71875 8.8125 6.3875 8.8125ZM24.0187 24H19.8687V17.5C19.8687 15.95 19.8375 13.9563 17.7125 13.9563C15.55 13.9563 15.2188 15.6438 15.2188 17.3875V24H11.0688V10.6375H15.05V12.4625H15.1062C15.6625 11.4125 17.0188 10.3062 19.0375 10.3062C23.2375 10.3062 24.0187 13.075 24.0187 16.675V24Z" fill=""/>
+            </svg>
+            LinkedIn
+          </a>
+        </li>
+      </ul>
+
+	  <p class="copyright">©2026</p>
+</article>
+
+<div class="drops">
+	<div class="drop"></div>
+	<div class="drop"></div>
+	<div class="drop"></div>
+	<div class="drop"></div>
+	<div class="drop"></div>
+	<div class="drop"></div>
+	<div class="drop"></div>
+</div>
+
+<style>
+
+.theme-switcher {
+	display: flex;
+	background: none;
+	border: none;
+	border-radius: 50%;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+	
+	&:hover {
+		cursor: pointer;
+	}
+
+	svg {
+		fill: var(--text-main-color);
+	}
+}
+
+	article {
+		display: grid;
+		align-items: center;
+		justify-items: center;
+		text-align: center;
+		color: var(--text-main-color);
+		padding: 2em;
+		box-shadow: var(--background-box-shadow);
+		background: var(--background-color-light);
+		border-radius: 10px;
+
+		picture img {
+			width: 10em;
+			height: auto;
+			border-radius: 50%;
+			box-shadow: var(--img-box-shadow);
+		}
+
+		hgroup {
+			h1 {
+				font-size: var(--font-size-heading-m);
+			}
+			font-size: var(--font-size-heading-m);
+    		font-weight: 700;
+		}
+
+		p.i-am-text {
+			display: grid;
+			padding-block: 1em;
+			font-size: var(--font-size-l);
+			font-weight: 700;
+
+			span {
+				color: var(--text-accent-color);
+			}
+		}
+
+		ul {
+			list-style: '';
+			display: flex;
+			gap: 1em;
+		}
+
+		a {
+			display: grid;
+			justify-items: center;
+			align-items: center;
+    		text-decoration: none;
+    		font-size: var(--font-size-xs);
+    		font-weight: 600;
+			color: var(--text-main-color);
+
+			svg {
+				fill: var(--text-main-color);
+				width: 2em;
+			}
+
+			&:hover {
+      			color: var(--link-hover);
+
+      			svg {
+        			fill: var(--link-hover);
+      			}
+    		}
+
+    		&:active {
+    		  color: var(--text-accent-color);
+			
+    		  svg {
+    		    fill: var(--text-accent-color);
+    		  }
+    		}
+		}
+
+		.copyright {
+			font-size: var(--font-size-xs);
+    		padding-top: 1em;
+		}
+	}
+
+	.drops {
+		display: none;
+		pointer-events: none;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		/* @ProgPod https://www.youtube.com/watch?v=pp6cYhKNqZ0 */
+		:global(html.dark-mode) .drops {
+			display: block;
+			position: fixed;
+			inset: 0;
+			overflow: hidden;
+			pointer-events: none;
+		}
+
+		:global(html.dark-mode) .drop {
+			position: absolute;
+			top: 80%;
+			width: 1em;
+			height: 1em;
+			border-radius: 0 100% 100% 100%;
+			background: linear-gradient(135deg, #050505 0%, #1a0000 40%, #380000 70%, #5c0000 100%);
+			box-shadow: 1px 1px 3px rgba(255, 0, 51, 0.366);
+			animation: --drop 3s infinite;
+
+			&:nth-child(1) {
+				left: 40%;
+			}
+
+			&:nth-child(2) {
+				left: 50%;
+				animation-delay: -.5s;
+				width: 1.5em;
+				height: 1.5em;
+			}
+
+			&:nth-child(3) {
+				left: 75%;
+				animation-delay: -1.5s;
+			}
+
+			&:nth-child(4) {
+				left: 60%;
+				animation-delay: -.10s;
+				width: 1.6em;
+				height: 1.6em;
+			}
+
+			&:nth-child(5) {
+				left: 43%;
+				animation-delay: -1s;
+				width: 1.5em;
+				height: 1.5em;
+			}
+
+			&:nth-child(6) {
+				left: 55%;
+				animation-delay: -1.5s;
+			}
+
+			&:nth-child(7) {
+				left: 35%;
+				animation-delay: -0.5s;
+			}
+		}
+
+		@keyframes --drop {
+			0% {
+				transform: translateY(0) scaleX(.85) rotate(45deg);
+				animation-timing-function: ease-in;
+			}
+			
+			100% {
+				transform: translateY(100dvh) scaleX(.85) rotate(45deg);
+			}
+		}
+	}
+</style> -->
