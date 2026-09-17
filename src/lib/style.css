@@ -278,7 +278,7 @@ html {
     img {
       width: 5em;
       height: auto;
-      filter: var(--icon-filter);
+      /* filter: var(--icon-filter); */
     }
   }
 
