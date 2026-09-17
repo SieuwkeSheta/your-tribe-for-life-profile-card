@@ -38,6 +38,10 @@
             scale: 1.2;
             outline: 1px solid blue;
         }
+
+        @media (min-width: 1000px) {
+            right: clamp(12em, 30dvw, 20em);
+        }
     }
 
     @media (prefers-color-scheme: light) {
