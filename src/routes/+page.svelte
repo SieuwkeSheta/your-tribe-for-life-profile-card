@@ -7,7 +7,7 @@
 	import camera from '$lib/assets/camera.avif'
 	import controller from '$lib/assets/controller1.avif'
 	import laptop from '$lib/assets/laptop.avif'
-	import sewingNeedle from '$lib/assets/sewing-needle.avif'
+	import sewingNeedle from '$lib/assets/sewing-needle.png'
 
 	let { data } = $props()
 	let { person, age } = $derived(data)
